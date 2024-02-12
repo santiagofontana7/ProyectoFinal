@@ -1,0 +1,17 @@
+.linkNoUnderline{
+    text-decoration: none;
+}
+
+.card{
+    width: 12rem;
+    text-align: center;
+    height:25rem;
+}
+
+.cardImg{
+    height: 10rem;
+}
+
+.cardTitle{
+    min-height: 4.5rem;
+}

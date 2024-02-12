@@ -6,55 +6,63 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Badge from 'react-bootstrap/Badge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-  import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-  import CartWidget from '../CartWidget/CartWidget';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import CartWidget from '../CartWidget/CartWidget';
+import { useState, useEffect } from 'react'
+import { Link, useParams } from "react-router-dom";
+import NavbarCategories from './NavbarCategories';
 
 
-function MyNavbar() {
+const MyNavbar = () => {
+  const [category, setCategory] = useState([]);
+
+  const { categoryId } = useParams();
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("https://dummyjson.com/products/categories");
+      const data = await response.json();
+      setCategory(data);
+    }
+    fetchData();
+  }, null)
+
   return (
     <>
       <Navbar expand="lg" bg="warning" >
-      <Container fluid>
-      <Navbar.Brand href="#home">
+        <Container fluid>
+          <Link to={"/"} className='navbar-brand'>
             <img
               width={100}
               src="/src/assets/img/logo.png"
               className="d-inline-block align-top"
               alt="Mercado Esclavo logo"
             />
-          </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="#action1">Inicio</Nav.Link>
-            <Nav.Link href="#action2">Más vendidos</Nav.Link>
-            <NavDropdown className="me-4" title="Categorías" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Cat 1</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Cat 2
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Cat 3
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Buscar productos..."
-              className="me-2 lg"
-              aria-label="Buscar"
-            />
-            <Button variant="outline-dark">Buscar</Button>
-          </Form>
-                      </Nav>
+            </Link>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+              <NavDropdown className="me-4" title="Categorías" id="navbarScrollingDropdown">
+
+                <NavbarCategories categories={category}></NavbarCategories>
+
+              </NavDropdown>
+              <Form className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Buscar productos..."
+                  className="me-2 lg"
+                  aria-label="Buscar"
+                />
+                <Button variant="outline-dark">Buscar</Button>
+              </Form>
+            </Nav>
             <CartWidget></CartWidget>
-        </Navbar.Collapse>
-      </Container>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
     </>
   );
