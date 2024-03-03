@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import "./Item.css"
 
-
-
 const Item = ({ product }) => {
     return (
             <Link className="linkNoUnderline" to={`/detail/${product.id}`}>
@@ -18,8 +16,6 @@ const Item = ({ product }) => {
                     <Card.Text>
                         ${product.price}
                     </Card.Text>
-                    
-                    {/* <Button variant="warning"><FontAwesomeIcon icon={faCartPlus} /></Button> */}
                 </Card.Body>
             </Card>
             <br/>

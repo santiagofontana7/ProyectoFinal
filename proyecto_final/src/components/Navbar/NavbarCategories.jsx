@@ -2,11 +2,10 @@ import React from "react";
 import NavbarCategory from "./NavbarCategory";
 
 const NavbarCategories = ({ categories }) => {
-
     return (
-        categories.map((cat) => {
+        categories.map((cat,index) => {
             return (
-                <NavbarCategory key={cat} category={cat}></NavbarCategory>
+                <NavbarCategory key={index} category={cat.category}></NavbarCategory>
             )
         })
     )

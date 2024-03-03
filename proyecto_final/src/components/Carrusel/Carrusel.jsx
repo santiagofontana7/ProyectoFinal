@@ -5,13 +5,13 @@ import "./Carrusel.css"
 
 const Carrusel = ({ greeting, images }) => {
     let size = greeting ? "auto" : "375px";
+
     return (
         <>
             <Carousel data-bs-theme="dark">
                 {
                     images.map((img) => {
                         return (
-
                             <Carousel.Item key={img.src} >
                                 <img
                                     style={{ height: size }}
@@ -19,11 +19,10 @@ const Carrusel = ({ greeting, images }) => {
                                     src={img.src}
                                 />
                                 <Carousel.Caption>
-                                    <h3>{img.title}</h3>
-                                    <p>{img.description}</p>
+                                    <h3 style={{color:img.color}}>{img.title}</h3>
+                                    <p style={{color:img.color}}>{img.description}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
-
                         )
                     })
                 }
@@ -31,7 +30,6 @@ const Carrusel = ({ greeting, images }) => {
             <br />
             <div>
                 {greeting ?
-
                     <Alert className="text-center" key="warning" variant="warning">
                         <Alert.Heading>{greeting}</Alert.Heading>
                     </Alert>
@@ -39,10 +37,8 @@ const Carrusel = ({ greeting, images }) => {
                     null
                 }
             </div>
-
         </>
     )
-
 }
 
 export default Carrusel

@@ -3,11 +3,10 @@ import Spinner from 'react-bootstrap/Spinner';
 
 const Loading = ({ message }) => {
     return (
-        <div style={{textAlign:"center"}}>
+        <div className="text-center">
             <h3>{message}</h3>
             <Spinner animation="border" />
         </div>
-
     )
 }
 

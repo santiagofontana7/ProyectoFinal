@@ -1,0 +1,11 @@
+.right-align{
+    text-align: right;
+}
+
+.disabledLink{
+    cursor: auto;
+}
+
+tr{
+    vertical-align: middle;
+}
